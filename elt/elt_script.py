@@ -40,7 +40,7 @@ destination_config = {
 dump_command = [
     'pg_dump',
     '-h', source_config['host'],
-    '-u', source_config['user'],
+    '-U', source_config['user'],
     '-d', source_config['dbname'],
     '-f', 'data_pump.sql',
     '-w'
