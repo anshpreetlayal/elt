@@ -75,7 +75,7 @@ services:
     environment:
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres/airflow
     command: >
-    bash -c "airflow db init &&
+       bash -c "airflow db init &&
              airflow users create --username airflow --password password --firstname John --lastname Doe --role Admin --email adming@example.com"
 
 
