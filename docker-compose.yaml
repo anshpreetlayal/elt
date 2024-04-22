@@ -25,7 +25,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
 
-  #  elt_script:
+#  elt_script:
 #    build:
 #      context: ./elt
 #      dockerfile: Dockerfile
