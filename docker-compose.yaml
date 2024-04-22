@@ -25,37 +25,37 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
 
-  elt_script:
-    build: 
-      context: ./elt
-      dockerfile: Dockerfile
-    command: ["python", "elt_script.py"]  
-    networks:
-      - elt_network
-    depends_on:
-      - source_postgres
-      - destination_postgres
-  
-  dbt:
-    image: ghcr.io/dbt-labs/dbt-postgres:1.4.7
-    command: 
-      [
-        "run",
-        "--profiles-dir",
-        "/root",
-        "--project-dir",
-        "/dbt" 
-      ]
-    networks:
-      - elt_network
-    volumes:
-      - /custom_postgres:/dbt
-      - ~/.dbt:/root
-    depends_on:
-      - elt_script
-    environment:
-       DBT_PROFILE: default
-       DBT_TARGET: dev
+  #  elt_script:
+#    build:
+#      context: ./elt
+#      dockerfile: Dockerfile
+#    command: ["python", "elt_script.py"]
+#    networks:
+#      - elt_network
+#    depends_on:
+#      - source_postgres
+#      - destination_postgres
+
+#  dbt:
+#    image: ghcr.io/dbt-labs/dbt-postgres:1.4.7
+#    command:
+#      [
+#        "run",
+#        "--profiles-dir",
+#        "/root",
+#        "--project-dir",
+#        "/dbt"
+#      ]
+#    networks:
+#      - elt_network
+#    volumes:
+#      - /custom_postgres:/dbt
+#      - ~/.dbt:/root
+#    depends_on:
+#      - elt_script
+#    environment:
+#      DBT_PROFILE: default
+#      DBT_TARGET: dev
 
   postgres:
     image: postgres:latest
